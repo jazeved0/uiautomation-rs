@@ -22,6 +22,7 @@ use super::errors::ERR_TIMEOUT;
 /// Windows process wrapper.
 #[derive(Debug)]
 pub struct Process {
+    pub id: u32,
     information: PROCESS_INFORMATION
 }
 
@@ -54,6 +55,7 @@ impl Process {
 
         if ret.as_bool() {
             Ok(Self {
+                id: information.dwProcessId,
                 information
             })
         } else {
